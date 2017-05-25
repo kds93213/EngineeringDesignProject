@@ -6,18 +6,12 @@
 #include <SPI.h>
 #include <new.h>
 
-#include <Wire.h>                            // I2C control library
+#include <Wire.h>                       // I2C control library
 #include <LiquidCrystal_I2C.h>          // LCD library
 
 #define    uchar    unsigned char
 #define    uint    unsigned int
 
-//dkjf;alksjdf;alksdjfa;
-
- 
-/*
- * dfajsdfj;laksjdfl
- */
 class DailyLook{
   private :
   String name;
@@ -80,8 +74,7 @@ class DailyLook{
   void setCurrentUse(boolean currentUse) {
     currentUse = currentUse;
   }
-};
-lookcolor = [[255,255,255], [0,0,255]]
+ 
 class Closet {
   private :
   String masterName;
@@ -89,9 +82,6 @@ class Closet {
   DailyLook* list;
 
  public :
- /*
-  * QQ how to express generic in C++
-  */
   Closet(String name, int UID, DailyLook* list):
   masterName(name), masterUID(UID), list(list){}
   
@@ -147,28 +137,14 @@ void printWeather(int temper, int humid){
     //TODO 점수 매기기
   }
 
- * 4 bytes tag serial number, the first 5 bytes for the checksum byte
+ /* 
+ * -*-*-*-*-*-*-*-*-*-*-*-*-MAIN PART-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
  */
  
-uchar serNumA[5];
- 
-uchar fifobytes;
-uchar fifoValue;
- 
-AddicoreRFID myRFID; /* create AddicoreRFID object to control the RFID module*/
+// for HW
 
- /*
-/////////////////////////////////////////////////////////////////////
-//set the pins
-/////////////////////////////////////////////////////////////////////
-*/
-const int chipSelectPin = 10;
-const int NRSTPD = 5;
-const int speakerPin = 8; //스피커가 연결된 디지털핀 설정
- 
-/* Maximum length of the array */
-#define MAX_LEN 16
- 
+
+// for data
  Serial.begin(9600);
  int curtemper;
  int curhumid;
@@ -176,29 +152,19 @@ const int speakerPin = 8; //스피커가 연결된 디지털핀 설정
  MusicLib musics;
  DailyLook curChoices[];
  Closet closets[];
- 
-dht DHT;
-int DHT11 = 12;
-
-int speakerpin = 12;
-
-#define BTN_PIN 2
-
-LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x20 for a 16 chars and 2 line display
-
 
 void setup(){
   Serial.begin(9600);
   
-  // 
+ //led setup
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT); 
   
-  
+ //lcd setup
   lcd.init();                      // initialize the lcd 
   
-  // start the SPI library:
+  // start the SPI library:(RFID setup)
   SPI.begin();
   
   pinMode(chipSelectPin,OUTPUT);              // Set digital pin 10 as OUTPUT to connect it to the RFID /ENABLE pin 
@@ -207,7 +173,7 @@ void setup(){
   digitalWrite(NRSTPD, HIGH);
  
   myRFID.AddicoreRFID_Init(); 
-
+ // data setup
  /*
   * TODO : 
  1.TODO : 옷장 및 코디 구성
@@ -234,98 +200,7 @@ void setup(){
 }//end of setup
 
 void loop(){
- String hi = "hello";
- Serial.println(hi);
  
- //test temperature humidity sensor
- int chk = DHT.read11(DHT11);
-  Serial.print("Temperature = ");
-  Serial.println(DHT.temperature);
-  Serial.print("Humidity = ");
-  Serial.println(DHT.humidity);
-  
-  //test piezo speaker
-  tone(speakerpin,500,1000);  //500: 음의 높낮이(주파수), 1000: 음의 지속시간(1초)
-  delay(2000); 
-
-  //test button
-  int btn = digitalRead(BTN_PIN);
-  
-  //test 3color led
-  setColor(255, 0, 0); // red
-  delay(2000);
-  setColor(0, 255, 0); // green
-  delay(2000);
-  setColor(0, 0, 255); // blue
-  delay(2000);
-  setColor(255, 255, 0); // yellow
-  delay(2000); 
-  setColor(255, 0, 255); // purple
-  delay(2000);
-  setColor(0, 255, 255); // aqua
-  delay(2000);
-  setColor(255, 255, 255); // white
-  delay(2000);
-  setColor(0, 0, 0); // Off
-  delay(2000);  
-
-
-  //test lcd panel
-  lcd.backlight();  // turn on backlight
-  lcd.print("Hello, world!");
-
-
-  //test RFID module
-    uchar i, tmp, checksum1;
-    uchar status;
-  uchar str[MAX_LEN];
-  uchar RC_size;
-  uchar blockAddr;    //Selection operation block address 0 to 63
-  String mynum = "";
-  str[1] = 0x4400;
-        
-    //RFID 태그의 타입을 리턴
-    status = myRFID.AddicoreRFID_Request(PICC_REQIDL, str);    
-    if (status == MI_OK)    //MIFARE 카드일때만 작동
-    {
-          tone(speakerPin,2000,100);
-          Serial.println("RFID tag detected");
-            Serial.print(str[0],BIN);
-          Serial.print(" , ");
-            Serial.print(str[1],BIN);
-          Serial.println(" ");
-    }
- 
-  //RFID 충돌방지, RFID 태그의 ID값(시리얼넘버) 등 저장된 값을 리턴함. 4Byte
-    status = myRFID.AddicoreRFID_Anticoll(str);
-    if (status == MI_OK)      //MIFARE 카드일때만 작동
-    {
-          checksum1 = str[0] ^ str[1] ^ str[2] ^ str[3];
-          Serial.println("The tag's number is  : ");
-            //Serial.print(2);
-            Serial.print(str[0]);
-          Serial.print(" , ");
-            Serial.print(str[1],BIN);
-          Serial.print(" , ");
-            Serial.print(str[2],BIN);
-          Serial.print(" , ");
-            Serial.print(str[3],BIN);
-          Serial.print(" , ");
-            Serial.print(str[4],BIN);
-          Serial.print(" , ");
-          Serial.println(checksum1,BIN);
-           
-            // Should really check all pairs, but for now we'll just use the first
-            if(str[0] == 224)                      //RFID 태그의 ID값이 224번이면 Gil Dong의 카드
-            {
-                Serial.print("Hello Gil Dong!\n");
-            } else if(str[0] == 170) {             //RFID 태그의 ID값이 170번이면 Kang Min의 카드
-                Serial.print("Hello Kang Min!\n");
-            }
-            Serial.println();
-            delay(1000);
-    }
-        myRFID.AddicoreRFID_Halt();           //Command tag into hibernation     
 
 /*
  // TODO : 날씨별 메시지 작성 
