@@ -6,8 +6,8 @@
 #include <SPI.h>
 #include <new.h>
 
-#include <Wire.h>                       // I2C control library
-#include <LiquidCrystal_I2C.h>          // LCD library
+#include <Wire.h>                       /* I2C control library*/
+          /* LCD library */
 
 #define    uchar    unsigned char
 #define    uint    unsigned int
@@ -16,6 +16,7 @@ class DailyLook{
   private :
   String name;
   int* category; // 0;jacket, 1;top, 2;pants, 3;skirt, 4;socks, 5;dress
+  int* colors;
   int score = 0;
   int temperBase;
   int temperLimit;
@@ -24,10 +25,19 @@ class DailyLook{
   boolean currentUse = false;
   
  public  :
-  DailyLook(String name, int* category, int temperBase, int temperLimit, int humidBase, int humidLimit):
-    name(name), category(category),temperBase(temperBase),temperLimit(temperLimit),humidBase(humidBase), humidLimit(humidLimit){}
+  DailyLook (){
+    Serial.println("no input!!");
+ }
+  DailyLook(String name, int category[3], int colors[3], int temperBase, int temperLimit, int humidBase, int humidLimit):
+    name(name), category(category),colors(colors),temperBase(temperBase),temperLimit(temperLimit),humidBase(humidBase), humidLimit(humidLimit){}
   String getName() {
     return name;
+  }
+  void toString(){
+    Serial.print("name : ");Serial.print(name);
+    Serial.print("\tscore : ");Serial.print(score);
+    Serial.print("\ttemperBase : ");Serial.print(temperBase);Serial.print("\ttemperLimit : ");Serial.print(temperLimit);
+    Serial.print("\thumidBase : ");Serial.print(humidBase);Serial.print("\thumidLimit : ");Serial.print(humidLimit);
   }
   void setName(String name) {
     name = name;
@@ -74,17 +84,22 @@ class DailyLook{
   void setCurrentUse(boolean currentUse) {
     currentUse = currentUse;
   }
+};
  
 class Closet {
   private :
   String masterName;
   int masterUID;
-  DailyLook* list;
+  DailyLook DailyLook();
+  DailyLook list[2];
 
  public :
-  Closet(String name, int UID, DailyLook* list):
-  masterName(name), masterUID(UID), list(list){}
-  
+  Closet(String name, int UID):
+  masterName(name), masterUID(UID){}
+
+  void toString(){
+    for(int i=0; i<20;i++) list[i].toString();
+  }
    String getMasterName() {
    return masterName;
  }
@@ -98,7 +113,7 @@ class Closet {
    masterUID = masterUID;
  }
    DailyLook* getList() {
-   return list;
+   return this->list;
  }
    void setList(DailyLook* list) {
    list = list;
@@ -120,7 +135,9 @@ class MusicLib{
 };
 
 void printWeather(int temper, int humid){
-    // print current Weather
+    /* print current Weather
+     *  
+     */
   }
   
   
@@ -134,7 +151,9 @@ void printWeather(int temper, int humid){
   }
   */
   void scoreDailyLook(DailyLook look){
-    //TODO 점수 매기기
+    /*
+     * TODO 점수 매기기
+     */
   }
 
  /* 
@@ -145,17 +164,28 @@ void printWeather(int temper, int humid){
 
 
 // for data
- Serial.begin(9600);
  int curtemper;
  int curhumid;
- String weatherMsg[];
- MusicLib musics;
+ String weatherMsg[10];
+ MusicLib musics;/*
  DailyLook curChoices[];
  Closet closets[];
+*/
 
+int cate1[] =  {1,2};
+  int color1[2][3] = {{255,255,255},{0,0,255}};
+  int cate2[] = {1,3};
+  int color2[2][3] = {{0,0,0}, {255,0,0}};
+  DailyLook* dl1 = new DailyLook(String("Whiteshirt&bluepants"), cate1, color1,15, 28, 0, 100);
+  DailyLook* dl2 = new DailyLook(String("BlackSweater&redpants"), cate2, color2,0, 50, 0, 100);
+  DailyLook* MinsuList[] = {dl1, dl2};
+  
+  Closet MinsuCloset = new Closet("Minsu", 23);
+  MinsuCloset.setList(MinsuList);
+  
 void setup(){
   Serial.begin(9600);
-  
+  /*
  //led setup
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
@@ -173,8 +203,8 @@ void setup(){
   digitalWrite(NRSTPD, HIGH);
  
   myRFID.AddicoreRFID_Init(); 
- // data setup
- /*
+  */
+ /*data setup
   * TODO : 
  1.TODO : 옷장 및 코디 구성
   */
@@ -200,7 +230,8 @@ void setup(){
 }//end of setup
 
 void loop(){
- 
+
+ MinsuCloset.toString();
 
 /*
  // TODO : 날씨별 메시지 작성 
@@ -239,5 +270,3 @@ void loop(){
  */
   
 }
-
-
