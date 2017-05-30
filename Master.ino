@@ -18,6 +18,9 @@
 #define    uchar    unsigned char
 #define    uint    unsigned int
 
+#define chipSelectPin 10
+
+#define NRSTPD 9
 #define LED3_RED 8
 #define LED3_GRE 7
 #define LED3_BLU 6
@@ -26,8 +29,10 @@
 #define LED4_GRE 4
 #define LED4_BLU 3
 
-#define TEM_HUM 2
- 
+#define TEM_HUM 1
+
+#define SPEAKER 0
+
 //4 bytes tag serial number, the first 5 bytes for the checksum byte
 uchar serNumA[5];
  
@@ -45,9 +50,7 @@ String weatherMsg[10];
 /////////////////////////////////////////////////////////////////////
 //set the pins
 /////////////////////////////////////////////////////////////////////
-const int chipSelectPin = 10;
-const int NRSTPD = 5;
-const int speakerPin = 8; //스피커가 연결된 디지털핀 설정
+
  
 class DailyLook {
   public :
@@ -231,16 +234,21 @@ void i2c_communication() {
     char c = Wire.read(); // 수신 데이터 읽기
     Serial.println(c); // 수신 데이터 출력
 }
-
+/*
+ * read button number
+ */
 byte readButton(){
   // read button info
   Wire.requestFrom(SLAVE, 4);
   return Wire.read();
 }
-void sendMessage()
+/*
+ * send a message to slave
+ */
+void sendMessage(String msg)
 {
   Wire.beginTransmission(2);
-  Wire.write("hello               "); 
+  Wire.write(msg); 
   Wire.endTransmission(); //message buffer is sent with Wire.endTransmission()                   
   delay(500);
 }
@@ -259,22 +267,6 @@ int color2[2][3] = {{0, 0, 0}, {255, 0, 0}};
 DailyLook dl1 = DailyLook(String("Whiteshirt&bluepants"), cate1, color1, 15, 28, 0, 100);
 DailyLook dl2 = DailyLook(String("BlackSweater&redpants"), cate2, color2, 0, 50, 0, 100);
 
- /*
-     1) 코디리스트 생성
-     DailyLook MinsuCloset[] = { DailyLook(String name, int* category, int temperBase, int temperLimit, int humidBase, int humidLimit),
-                                 // 민수의 코디 목록 };
-     DailyLook SuzyCloset[] = { DailyLook(String name, int* category,int*rgb, int temperBase, int temperLimit, int humidBase, int humidLimit),
-     DailyLook(String name, int* category, int temperBase, int temperLimit, int humidBase, int humidLimit),
-                                 // 수지의 코디 목록 };
-  */
-  /*
-     2) 옷장 생성
-    Closet Minsu = new Closet("Minsu", 0x~~~, MinsuCloset);
-    Closet Suzy = new Closet(Suzy, 0x~~~, SuzyCloset);
-  */
-  /*
-     3)
-  */
 DailyLook* MinsuList[] = {&dl1, &dl2};
 
 Closet* minsuCloset = new Closet("Minsu", 23);
@@ -306,9 +298,6 @@ void setup() {
 }//end of setup
 
 void loop() {
-  Serial.println("Hello");
-  minsuCloset->toString();
-
   uchar i, tmp, checksum1;
   uchar status;
   uchar str[MAX_LEN];
