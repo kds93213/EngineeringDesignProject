@@ -48,7 +48,7 @@ void setColor(int ledNum, int red, int green, int blue)
   }
 }
 void receiveFromMaster(int bytes) {
-int temp = 0;
+  int temp = 0;
    int ledNum = -1;
    int r = 0;
    int g = 0;
@@ -64,9 +64,11 @@ int temp = 0;
        * 2. send led light number, r, g, b value in order
        */
       ledNum = Wire.read();
-      
       if (ledNum == 0){ //if it have jacket led color 
-        Serial.print("Printing Jacket : ");
+        Serial.print("Printing Jacket : "); 
+      } else {
+       Serial.print("Printing Top : ");        
+      }
         r = Wire.read();
         g = Wire.read();
         b = Wire.read();
@@ -77,21 +79,6 @@ int temp = 0;
         Serial.print("b : ");
         Serial.println(b); 
        setColor(ledNum, r, g, b);
-       ledNum = Wire.read();
-      }
-       Serial.print("Printing Top : ");
-        
-      r = Wire.read();
-      g = Wire.read();
-      b = Wire.read();
-      
-      Serial.print("r : ");
-      Serial.print(r);
-      Serial.print("g : ");
-      Serial.print(g);
-      Serial.print("b : ");
-      Serial.println(b); 
-      setColor(ledNum, r, g, b);
     } else {// set LCD
       /*
        * LCD send
