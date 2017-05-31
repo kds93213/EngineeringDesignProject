@@ -1,4 +1,3 @@
-
 /*
  * Wire : Master
  * Board # : 1
@@ -226,29 +225,42 @@ class MusicLib {
       }
     */
 };
-void i2c_communication() {
-  // Speaker
-  // Temperature sensor
-  // RFID Module 
-    Wire.requestFrom(SLAVE, 1); // 1 바이트 크기의 데이터 요청
-    char c = Wire.read(); // 수신 데이터 읽기
-    Serial.println(c); // 수신 데이터 출력
-}
 /*
  * read button number
  */
-byte readButton(){
+int readButton(){
   // read button info
-  Wire.requestFrom(SLAVE, 4);
+  Wire.requestFrom(SLAVE, 2);
   return Wire.read();
 }
 /*
  * send a message to slave
  */
-void sendMessage(String msg)
-{
+void sendRGB(int category, int* rgb){
   Wire.beginTransmission(2);
-  Wire.write(msg); 
+  Wire.write(1); //sending RGB light value
+  Wire.write(category);
+  for (int i=0; i<3; ++i){
+    Wire.write(rgb[i]);   
+  }
+  Wire.endTransmission();
+}
+
+void sendMessage(char yesno, String msg)
+{      /*
+       * LCD send
+       * 1. send 2
+       * 2. send ! (if you want to print yes no button on second row)or sth else
+       * 3. send msg
+       */
+  Wire.beginTransmission(2);
+  Wire.write(2); // 1. sending LED message
+  if (yesno == '!'){// 2. add YES NO Button or not
+    Wire.write('!');
+  } // 3. send Message
+  for (int i=0; i<msg.length(); ++i){
+    Wire.write(msg[i]);   
+  }
   Wire.endTransmission(); //message buffer is sent with Wire.endTransmission()                   
   delay(500);
 }
@@ -310,7 +322,6 @@ void loop() {
     status = myRFID.AddicoreRFID_Request(PICC_REQIDL, str);    
     if (status == MI_OK)    //MIFARE 카드일때만 작동
     {
-          tone(speakerPin,2000,100);
           Serial.println("RFID tag detected");
             Serial.print(str[0],BIN);
           Serial.print(" , ");
