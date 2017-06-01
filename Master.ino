@@ -51,7 +51,7 @@ class DailyLook {
     String name = " ";
     int* category = {}; // 0;jacket, 1;top, 2;pants, 3;skirt
     int colors[COLOR_SIZE][3] = {};
-    int  score = 0;
+    int score = 0;
     int temperBase = -1;
     int temperLimit = -1;
     int humidBase = -1;
@@ -266,67 +266,154 @@ void scoreDailyLook () {
 }
 
 //sangwu의 코디와 옷장
-int scate1[] = {1, 2, -1};
-int scolor1[2][3] = {{139, 188, 255}, {250, 244, 192}, {-1, -1, -1}};
-int scate2[] = {1, 2, -1};
-int scolor2[2][3] = {{255, 228, 0}, {255, 255, 255}, {-1, -1, -1}};
-int scate3[] = {1, 2, -1};
-int scolor3[2][3] = {{0, 0, 0}, {255, 255, 36}, {-1, -1, -1}};
-int scate4[] = {1, 2, -1};
-int scolor4[2][3] = {{255, 94, 0}, {0, 0, 0}, {-1, -1, -1}};
-int scate5[] = {1, 2, -1};
-int scolor5[2][3] = {{153, 0, 76}, {0, 0, 119}, {-1, -1, -1}}; 
-int scate6[] = {1, 2, -1};
-int scolor6[2][3] = {{255, 255, 255}, {0, 0, 0}, {-1, -1, -1}};
-int scate7[] = {1, 2, -1};
-int scolor7[2][3] = {{0, 0, 0}, {0, 103, 0}, {-1, -1, -1}};
-int scate8[] = {1, 2, -1};
-int scolor8[2][3] = {{255, 133, 133}, {250, 244, 192}, {-1, -1, -1}};
-int scate9[] = {1, 2, -1};
-int scolor9[2][3] = {{243, 97, 220}, {0, 0, 119}, {-1, -1, -1}};
-int scate10[] = {1, 2, -1};
-int scolor10[2][3] = {{5, 0, 153}, {255, 255, 36}, {-1, -1, -1}};
-int scate11[] = {1, 2, -1};
-int scolor11[2][3] = {{0, 103, 0}, {0, 0, 119}, {-1, -1, -1}};
-int scate12[] = {0, 1, 2};
-int scolor12[2][3] = {{243, 202, 90}, {250, 244, 193}, {0, 0, 119}}; 
-int scate13[] = {0, 1, 2};
-int scolor13[2][3] = {{0, 0, 119}, {255, 255, 255}, {0, 0, 0}};
-int scate14[] = {0, 1, 2};
-int scolor14[2][3] = {{0, 103, 0}, {153, 0, 76}, {0, 0, 119}};
-int scate15[] = {1, 2, -1};
-int scolor15[2][3] = {{0, 0, 119}, {243, 202, 90}, {-1, -1, -1}};
-int scate16[] = {0, 1, 2};
-int scolor16[2][3] = {{243, 202, 90}, {166, 166, 166}, {0, 0, 119}};
-int scate17[] = {0, 1, 2};;
-int scolor17[2][3] = {{0, 0, 119}, {153, 0, 76}, {0, 0, 119}};
-int scate18[] = {0, 1, 2};
-int scolor18[2][3] = {{0, 103, 0}, {166, 166, 166}, {250, 244, 192}};
-int scate19[] = {0, 1, 2};
-int scolor19[2][3] = {{153, 0, 76}, {0, 0, 0}, {0, 0, 119}};
-int scate20[] = {0, 1, 2};
-int scolor20[2][3] = {{166, 166, 166}, {255, 255, 255}, {0, 0, 0}};
+int scate[][3] = {
+	{1, 2, -1},
+	{1, 2, -1},
+ {1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{0, 1, 2},
+	{0, 1, 2},
+	{0, 1, 2},
+	{1, 2, -1},
+	{0, 1, 2},
+	{0, 1, 2},
+	{0, 1, 2},
+	{0, 1, 2}, 
+	{0, 1, 2},
+};
 
-DailyLook sdl1 = DailyLook(String("paleblue_shirt & ivory_pants",), scate1, scolor1, 11, 20, 65, 74);
-DailyLook sdl2 = DailyLook(String("deepyellow_shirt & white_pants",), scate2, scolor2, 11, 20, 65, 74);
-DailyLook sdl3 = DailyLook(String("black_shirt & yellow_pants",), scate3, scolor3, 11, 20, 65, 74);
-DailyLook sdl4 = DailyLook(String("orange_shirt & black_pants",), scate4, scolor4, 11, 20, 65, 74);
-DailyLook sdl5 = DailyLook(String("wine_shirt & deepblue_pants",), scate5, scolor5, 11, 20, 65, 74);
-DailyLook sdl6 = DailyLook(String("white_shirt & black_pants",), scate6, scolor6, 21, 50, 75, 100);
-DailyLook sdl7 = DailyLook(String("black_shirt & deepgreen_pants",), scate7, scolor7, 21, 50, 75, 100);
-DailyLook sdl8 = DailyLook(String("pink_shirt & ivory_pants",), scate8, scolor8, 21, 50, 75, 100);
-DailyLook sdl9 = DailyLook(String("palepurple_shirt & deepblue_pants",), scate9, scolor9, 21, 50, 75, 100);
-DailyLook sdl10 = DailyLook(String("navy_shirt & yellow_pants",), scate10, scolor10, 21, 50, 0, 100);
-DailyLook sdl11 = DailyLook(String("deepgreen_shirt & deepblue_pants",), scate11, scolor11, 11, 20 , 65, 74);
-DailyLook sdl12 = DailyLook(String("palebrown_outer & ivory_shirt & deepblue_pants",), scate12, scolor12, 11, 20, 65, 74);
-DailyLook sdl13 = DailyLook(String("deepblue_outer & white_shirt & black_pants",), scate13, scolor13, 11, 20, 65, 74);
-DailyLook sdl14 = DailyLook(String("deepgreen_outer & wine_shirt & deepblue_pants",), scate14, scolor14, 11, 20, 65, 74);
-DailyLook sdl15 = DailyLook(String("deepblue_shirt & palebrown_pants",), scate15, scolor15, 11, 20, 65, 74);
-DailyLook sdl16 = DailyLook(String("palebrown_outer & grey_shirt & deepblue_pants",), scate16, scolor16, -40, 10, 0, 65);
-DailyLook sdl17 = DailyLook(String("deepblue_outer & wine_shirt & deepblue_pants",), scate17, scolor17, -40, 10, 0, 65);
-DailyLook sdl18 = DailyLook(String("deepgreen_outer & grey_shirt & ivory_pants",), scate18, scolor18, -40, 10, 0, 65);
-DailyLook sdl19 = DailyLook(String("wine_outer & black_shirt & deepblue_pants',), scate19, scolor19, -40, 10, 0, 65);
-DailyLook sdl20 = DailyLook(String("grey_outer & white_shirt & black_pants',), scate20, scolor20, -40, 10, 0, 65);
+int scolor[][3][3] = {
+	{
+		{139, 188, 255},
+		{250, 244, 192},
+		{-1, -1, -1}
+	},
+	{
+		{255, 228, 0},
+		{255, 255, 255},
+		{-1, -1, -1}
+	},
+	{
+		{0, 0, 0},
+		{255, 255, 36},
+		{-1, -1, -1}
+	},
+	{
+		{255, 94, 0},
+		{0, 0, 0},
+		{-1, -1, -1}
+	},
+	{
+		{153, 0, 76},
+		{0, 0, 119},
+		{-1, -1, -1}
+	},
+	{
+		{255, 255, 255},
+		{0, 0, 0},	
+		{-1, -1, -1}
+	},
+	{
+		{0, 0, 0},
+		{0, 103, 0},
+		{-1, -1, -1}
+	},
+	{
+		{255, 133, 133},
+		{250, 244, 192},
+		{-1, -1, -1}
+	},
+	{
+		{243, 97, 220},
+		{0, 0, 119},
+		{-1, -1, -1}
+	},
+	{
+		{5, 0, 153},
+		{255, 255, 36},
+		{-1, -1, -1}
+	},
+	{
+		{0, 103, 0},
+		{0, 0, 119},
+		{-1, -1, -1}
+	},
+	{
+		{243, 202, 90},
+		{250, 244, 193},
+		{0, 0, 119}
+	},
+	{
+		{0, 0, 119},
+		{255, 255, 255},
+		{0, 0, 0}
+	},
+	{
+		{0, 103, 0},
+		{153, 0, 76},
+		{0, 0, 119}
+	},
+	{
+		{0, 0, 119},
+		{243, 202, 90},
+		{-1, -1, -1}
+	},
+	{
+		{243, 202, 90},
+		{166, 166, 166},
+		{0, 0, 119}
+	},
+	{
+		{0, 0, 119},
+		{153, 0, 76},
+		{0, 0, 119}
+	},
+	{
+		{0, 103, 0},
+		{166, 166, 166},
+		{250, 244, 192}
+	},
+	{
+		{153, 0, 76},
+		{0, 0, 0},
+		{0, 0, 119}
+	},
+	{
+		{166, 166, 166},
+		{255, 255, 255},
+		{0, 0, 0}
+	}
+};
+
+DailyLook sdl1 = DailyLook(String("paleblue_shirt & ivory_pants"), scate[0][0], scolor[0][0][0], 11, 20, 65, 74);
+DailyLook sdl2 = DailyLook(String("deepyellow_shirt & white_pants"), scate[1][0], scolor[1][0][0], 11, 20, 65, 74);
+DailyLook sdl3 = DailyLook(String("black_shirt & yellow_pants"), scate[2][0], scolor[2][0][0], 11, 20, 65, 74);
+DailyLook sdl4 = DailyLook(String("orange_shirt & black_pants"), scate[3][0], scolo[3][0][0]r, 11, 20, 65, 74);
+DailyLook sdl5 = DailyLook(String("wine_shirt & deepblue_pants"), scate[4][0], scolor[4][0][0], 11, 20, 65, 74);
+DailyLook sdl6 = DailyLook(String("white_shirt & black_pants"), scate[5][0], scolor[5][0][0], 21, 50, 75, 100);
+DailyLook sdl7 = DailyLook(String("black_shirt & deepgreen_pants"), scate[6][0], scolor[6][0][0], 21, 50, 75, 100);
+DailyLook sdl8 = DailyLook(String("pink_shirt & ivory_pants"), scate[7][0], scolor[7][0][0], 21, 50, 75, 100);
+DailyLook sdl9 = DailyLook(String("palepurple_shirt & deepblue_pants"), scate[8][0], scolor[8][0][0], 21, 50, 75, 100);
+DailyLook sdl10 = DailyLook(String("navy_shirt & yellow_pants"), scate[9][0], scolor[9][0][0], 21, 50, 0, 100);
+DailyLook sdl11 = DailyLook(String("deepgreen_shirt & deepblue_pants"), scate[10][0], scolor[10][0][0], 11, 20 , 65, 74);
+DailyLook sdl12 = DailyLook(String("palebrown_outer & ivory_shirt & deepblue_pants"), scate[11][0], scolor[11][0][0], 11, 20, 65, 74);
+DailyLook sdl13 = DailyLook(String("deepblue_outer & white_shirt & black_pants"), scate[12][0], scolor[12][0][0], 11, 20, 65, 74);
+DailyLook sdl14 = DailyLook(String("deepgreen_outer & wine_shirt & deepblue_pants"), scate[13][0], scolor[13][0][0], 11, 20, 65, 74);
+DailyLook sdl15 = DailyLook(String("deepblue_shirt & palebrown_pants"), scate[14][0], scolor[14][0][0], 11, 20, 65, 74);
+DailyLook sdl16 = DailyLook(String("palebrown_outer & grey_shirt & deepblue_pants"), scate[15][0], scolor[15][0][0], -40, 10, 0, 65);
+DailyLook sdl17 = DailyLook(String("deepblue_outer & wine_shirt & deepblue_pants"), scate[16][0], scolor[16][0][0], -40, 10, 0, 65);
+DailyLook sdl18 = DailyLook(String("deepgreen_outer & grey_shirt & ivory_pants"), scate[17][0], scolor[17][0][0], -40, 10, 0, 65);
+DailyLook sdl19 = DailyLook(String("wine_outer & black_shirt & deepblue_pants"), scate[18][0], scolor[18][0][0], -40, 10, 0, 65);
+DailyLook sdl20 = DailyLook(String("grey_outer & white_shirt & black_pants"), scate[19][0], scolor[19][0][0], -40, 10, 0, 65);
+
+
 
 DailyLook* SangwuList[] = {&sdl1, &sdl2, &sdl3, &sdl4, &sdl5, &sdl6, &sdl7, &sdl8, &sdl9, &sdl10, &sdl11, &sdl12, &sdl13, &sdl14, &sdl15, &sdl16, &sdl17, &sdl18, &sdl19, &sdl20 };
 
@@ -335,66 +422,152 @@ Closet* sangwuCloset = new Closet("Sangwu", 23);
 
 
 //eunjin의 코디와 옷장
-int ecolor1[2][3] = {{255, 255, 255}, {255, 133, 133}, {-1, -1, -1}};
-int ecate2[] = {1, 3, -1};
-int ecolor2[2][3] = {{189, 255, 18}, {255, 255, 255}, {-1, -1, -1}};
-int ecate3[] = {1, 3, -1};
-int ecolor3[2][3] = {{255, 255, 255}, {153, 0, 76}, {-1, -1, -1}};
-int ecate4[] = {1, 2, -1};
-int ecolor4[2][3] = {{1, 0, 255}, {255, 255, 255}, {-1, -1, -1}};
-int ecate5[] = {1, 2, -1};
-int ecolor5[2][3] = {{255, 133, 133}, {255, 255, 36}, {-1, -1, -1}};
-int ecate6[] = {1, 2, -1};
-int ecolor6[2][3] = {{255, 255, 255}, {1, 0, 255}, {-1, -1, -1}};
-int ecate7[] = {1, 2, -1};
-int ecolor7[2][3] = {{255, 255, 36}, {1, 0, 255}, {-1, -1, -1}};
-int ecate8[] = {1, 3, -1};
-int ecolor8[2][3] = {{128, 65, 217}, {255, 133, 133}, {-1, -1, -1}};
-int ecate9[] = {1, 3, -1};
-int ecolor9[2][3] = {{255, 0, 0}, {128, 65 ,217}, {-1, -1, -1}};
-int ecate10[] = {1, 3, -1};
-int ecolor10[2][3] = {{255, 133, 133}, {5, 0, 153}, {-1, -1, -1}};
-int ecate11[] = {1, 2, -1};
-int ecolor11[2][3] = {{128, 65, 217}, {166, 166, 166}, {-1, -1, -1}};
-int ecate12[] = {0, 1, 2};
-int ecolor12[2][3] = {{232, 218, 179}, {206, 251, 201}, {1, 0, 255}};
-int ecate13[] = {0, 1, 2};
-int ecolor13[2][3] = {{135, 38, 0}, {255, 255, 255}, {0, 0, 0}};
-int ecate14[] = {0, 1, 3};
-int ecolor14[2][3] = {{250, 244, 192}, {128, 65, 217}, {255, 0, 0}};
-int ecate15[] = {0, 1, 3};
-int ecolor15[2][3] = {{0, 0, 0}, {255, 255, 255}, {89, 135, 0}};
-int ecate16[] = {0, 1, 2};
-int ecolor16[2][3] = {{153, 255, 217}, {1, 0, 255}, {255, 255, 255}};
-int ecate17[] = {0, 1, 3};
-int ecolor17[2][3] = {{243, 202, 90}, {0, 0, 0}, {153, 0, 76}};
-int ecate18[] = {0, 1, 2};
-int ecolor18[2][3] = {{0, 0, 0}, {0, 0, 119}, {0, 0, 0}};
-int ecate19[] = {0, 1, 2};
-int ecolor19[2][3] = {{166, 166, 166}, {255, 255, 255}, {1, 0, 255}};
-int ecate20[] = {0, 1, 2};
-int ecolor20[2][3] = {{0, 0, 199}, {166, 166, 166}, {0, 0, 0}};
-                                  
-DailyLook edl1 = DailyLook(String("white_shirt & pink_skirt"), ecate1, ecolor1, 11, 20, 65, 74);
-DailyLook edl2 = DailyLook(String("yellowgreen_shirt & white_skirt"), ecate2, ecolor2, 11, 20, 65, 74);
-DailyLook edl3 = DailyLook(String("white_shirt & wine_skirt"), ecate3, ecolor3, 11, 20, 65, 74);
-DailyLook edl4 = DailyLook(String("blue_shirt & white_pants"), ecate4, ecolor4, 11, 20, 65, 74);
-DailyLook edl5 = DailyLook(String"pink_shirt & yellow_pants"), ecate5, ecolor5, 11, 20, 65, 74);
-DailyLook edl6 = DailyLook(String("white_shirt & blue_pants"), ecate6, ecolor6, 21, 50, 75, 100);
-DailyLook edl7 = DailyLook(String("yellow_shirt & blue_pants"), ecate7, ecolor7, 21, 50, 75, 100);
-DailyLook edl8 = DailyLook(String("purple_shirt & pink_skirt"), ecate8, ecolor8, 21, 50, 75, 100);
-DailyLook edl9 = DailyLook(String("red_shirt & purple_skirt"), ecate9, ecolor9, 21, 50, 75, 100);
-DailyLook edl10 = DailyLook(String("pink_shirt & navy_skirt"), ecate10, ecolor10, 21, 50, 0, 100);
-DailyLook edl11 = DailyLook(String("purple_shirt & grey_pants"), ecate11, ecolor11, 11, 20 , 65, 74);
-DailyLook edl12 = DailyLook(String("beige_outer & pea_shirt & blue_pants"), ecate12, ecolor12, 11, 20, 65, 74);
-DailyLook edl13 = DailyLook(String("brown_outer & white_shirt & black_pants"), ecate13, ecolor13, 11, 20, 65, 74);
-DailyLook edl14 = DailyLook(String("ivory_outer & purple_shirt & red_skirt"), ecate14, ecolor14, 11, 20, 65, 74);
-DailyLook edl15 = DailyLook(String("black_outer & white_shirt & deepgreen_skirt"), ecate15, ecolor15, 11, 20, 65, 74);
-DailyLook edl16 = DailyLook(String("mint_outer & blue_shirt & white_pants"), ecate16, ecolor16, -40, 10, 0, 65);
-DailyLook edl17 = DailyLook(String("palebrown_outer & black_shirt & wine_skirt"), ecate17, ecolor17, -40, 10, 0, 65);
-DailyLook edl18 = DailyLook(String("black_outer & deepblue_shirt & black_pants"), ecate18, ecolor18, -40, 10, 0, 65);
-DailyLook edl19 = DailyLook(String("grey_outer & white_shirt & blue_pants"), ecate19, ecolor19, -40, 10, 0, 65);
-DailyLook edl20 = DailyLook(String("deepblue_outet & grey_shirt & black_pants"), ecate20, ecolor20, -40, 10, 0, 65);
+int ecate[][3] = {
+	{1, 3 -1},
+	{1, 3 -1},
+	{1, 3 -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 2, -1},
+	{1, 3, -1},
+	{1, 3, -1},
+	{1, 3, -1},
+	{1, 2, -1},
+	{0, 1, 2},
+	{0, 1, 2},
+	{0, 1, 3},
+	{0, 1, 3},
+	{0, 1, 2},
+	{0, 1, 3},
+	{0, 1, 2},
+	{0, 1, 2},
+	{0, 1, 2}
+};
+
+int ecolor[][3][3] = {
+ {
+		{255, 255, 255},
+		{255, 133, 133},
+		{-1, -1, -1}
+	},
+	{
+		{189, 255, 18},
+		{255, 255, 255},
+		{-1, -1, -1}
+	},
+{
+	{255, 255, 255},
+	{153, 0, 76},
+	{-1, -1, -1}
+},
+{
+	{1, 0, 255},
+	{255, 255, 255},
+	{-1, -1, -1}
+},
+{
+	{255, 133, 133},
+	{255, 255, 36},
+	{-1, -1, -1}
+},
+{
+	{255, 255, 255},
+	{1, 0, 255},
+	{-1, -1, -1}
+},
+{
+	{255, 255, 36},
+	{1, 0, 255},
+	{-1, -1, -1}
+},
+{
+	{128, 65, 217},
+	{255, 133, 133},
+	{-1, -1, -1}
+},
+{
+	{255, 0, 0},
+	{128, 65 ,217},
+	{-1, -1, -1}
+},
+{
+	{255, 133, 133},
+	{5, 0, 153},
+	{-1, -1, -1}
+},
+{
+	{128, 65, 217},
+	{166, 166, 166},
+	{-1, -1, -1}
+},
+{
+	{232, 218, 179},
+	{206, 251, 201},
+	{1, 0, 255}
+},
+{
+	{135, 38, 0},
+	{255, 255, 255},
+	{0, 0, 0}
+},
+{
+	{250, 244, 192},
+	{128, 65, 217},
+	{255, 0, 0}
+},
+{
+	{0, 0, 0},
+	{255, 255, 255},
+	{89, 135, 0}
+},
+{
+	{153, 255, 217},
+	{1, 0, 255},
+	{255, 255, 255}
+},
+{
+	{243, 202, 90},
+	{0, 0, 0},
+	{153, 0, 76}
+},
+{
+	{0, 0, 0},
+	{0, 0, 119},
+	{0, 0, 0}
+},
+{
+	{166, 166, 166},
+	{255, 255, 255},
+	{1, 0, 255}
+},
+{
+	{0, 0, 199},
+	{166, 166, 166},
+	{0, 0, 0}
+ };
+}
+
+DailyLook edl1 = DailyLook(String("white_shirt & pink_skirt"), ecate[0][0], ecolor[0][0][0], 11, 20, 65, 74);
+DailyLook edl2 = DailyLook(String("yellowgreen_shirt & white_skirt"), ecate[1][0], ecolor[1][0][0], 11, 20, 65, 74);
+DailyLook edl3 = DailyLook(String("white_shirt & wine_skirt"), ecate[2][0], ecolor[2][0][0], 11, 20, 65, 74);
+DailyLook edl4 = DailyLook(String("blue_shirt & white_pants"), ecate[3][0], scolo[3][0][0]r, 11, 20, 65, 74);
+DailyLook edl5 = DailyLook(String("pink_shirt & yellow_pants"), ecate[4][0], ecolor[4][0][0], 11, 20, 65, 74);
+DailyLook edl6 = DailyLook(String("white_shirt & blue_pants"), ecate[5][0], ecolor[5][0][0], 21, 50, 75, 100);
+DailyLook edl7 = DailyLook(String("yellow_shirt & blue_pants"), ecate[6][0], ecolor[6][0][0], 21, 50, 75, 100);
+DailyLook edl8 = DailyLook(String("purple_shirt & pink_skirt"), ecate[7][0], ecolor[7][0][0], 21, 50, 75, 100);
+DailyLook edl9 = DailyLook(String("red_shirt & purple_skirt"), ecate[8][0], ecolor[8][0][0], 21, 50, 75, 100);
+DailyLook edl10 = DailyLook(String("pink_shirt & navy_skirt"), ecate[9][0], ecolor[9][0][0], 21, 50, 0, 100);
+DailyLook edl11 = DailyLook(String("purple_shirt & grey_pants"), ecate[10][0], ecolor[10][0][0], 11, 20 , 65, 74);
+DailyLook edl12 = DailyLook(String("beige_outer & pea_shirt & blue_pants"), ecate[11][0], ecolor[11][0][0], 11, 20, 65, 74);
+DailyLook edl13 = DailyLook(String("brown_outer & white_shirt & black_pants"), ecate[12][0], ecolor[12][0][0], 11, 20, 65, 74);
+DailyLook edl14 = DailyLook(String("ivory_outer & purple_shirt & red_skirt"), ecate[13][0], ecolor[13][0][0], 11, 20, 65, 74);
+DailyLook edl15 = DailyLook(String("black_outer & white_shirt & deepgreen_skirt"), ecate[14][0], ecolor[14][0][0], 11, 20, 65, 74);
+DailyLook edl16 = DailyLook(String("mint_outer & blue_shirt & white_pants"), ecate[15][0], ecolor[15][0][0], -40, 10, 0, 65);
+DailyLook edl17 = DailyLook(String("palebrown_outer & black_shirt & wine_skirt"), ecate[16][0], ecolor[16][0][0], -40, 10, 0, 65);
+DailyLook edl18 = DailyLook(String("black_outer & deepblue_shirt & black_pants"), ecate[17][0], ecolor[17][0][0], -40, 10, 0, 65);
+DailyLook edl19 = DailyLook(String("grey_outer & white_shirt & blue_pants"), ecate[18][0], ecolor[18][0][0], -40, 10, 0, 65);
+DailyLook edl20 = DailyLook(String("deepblue_outet & grey_shirt & black_pants"), ecate[19][0], ecolor[19][0][0], -40, 10, 0, 65);
 
 DailyLook* EunjinList[] = {&edl1, &edl2, &edl3, &edl4, &edl5, &edl6, &edl7, &edl8, &edl9, &edl10, &edl11, &edl12, &edl13, &edl14, &edl15, &edl16, &edl17, &edl18, &edl19, &edl20};
 
@@ -470,12 +643,21 @@ void loop() {
           Serial.println(checksum1,BIN);
           */ 
             // Should really check all pairs, but for now we'll just use the first
-            if(str[0] == 100)                      //RFID 태그의 ID값이 100번이면 Eunjin의 카드
-            {
+           if(str[0] == 64) {             //RFID 태그의 ID값이 64번이면 Sangwu의 카드
+                
+             //반복문으로 코디 탐색하다가 온도 만족하면 코디 string 출력, RGB값 전송		//그렇지 않으면 continue
+             //no 선택 시 반복문 반복			//yes 선택 시 프로그램 종료
+             //i가 19가 되면 추천 코디 소진 알림
+            }
+                
+           else if(str[0] == 100) {            //RFID 태그의 ID값이 100번이면 Eunjin의 카드
                 Serial.print("Hello Eunjin!\n");
-            } else if(str[0] == 64) {             //RFID 태그의 ID값이 64번이면 Sangwu의 카드
-                Serial.print("Hello Sangwu!\n");
-            } else {
+            
+            //반복문으로 코디 탐색하다가 온도 만족하면 코디 string 출력, RGB값 전송		//그렇지 않으면 continue
+             //no 선택 시 반복문 반복			//yes 선택 시 프로그램 종료
+             //i가 19가 되면 추천 코디 소진 알림
+            } 
+           else {
                Serial.print("Wrong Input!\n");
             }
             Serial.println();
