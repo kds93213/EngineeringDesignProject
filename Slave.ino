@@ -79,7 +79,7 @@ void receiveFromMaster(int bytes) {
         Serial.print("b : ");
         Serial.println(b); 
        setColor(ledNum, r, g, b);
-    } else {// set LCD
+    } else if (temp == 2){
       /*
        * LCD send
        * 1. send 2
@@ -96,6 +96,10 @@ void receiveFromMaster(int bytes) {
       }
       lcd.autoscroll();
       lcd.display();
+    } else if(temp == 3){// get temperature and humidity
+      float curTemp = Wire.read();
+      float curHumid = Wire.read();
+      //printWeather(curTemp, curHumid);
     }
   }
 
