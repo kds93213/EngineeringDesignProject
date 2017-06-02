@@ -388,7 +388,7 @@ void printWeather(int temper, int humid) {
     Serial.print("temperature:");
     Serial.print(curtemp);
     Serial.print(" humidity:");
-    Serial.print(curtemp);
+    Serial.print(curhumid);
     Serial.println();
   }
   else                                //에러일 경우 처리
