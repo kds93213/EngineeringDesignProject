@@ -247,16 +247,10 @@ void sendRGB(int category, int* rgb){
 }
 
 
-void sendTemp(float curtemp){
+void sendTempHumid(float curtemp, float curhumid){
   Wire.beginTransmission(4);
   Wire.write(3); //sending RGB light value
   Wire.write(curtemp);
-  Wire.write(curhumid);   
-  Wire.endTransmission();
-}
-void sendHumid(float curhumid){
-  Wire.beginTransmission(4);
-  Wire.write(3); //sending humidity
   Wire.write(curhumid);   
   Wire.endTransmission();
 }
