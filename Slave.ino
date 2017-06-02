@@ -97,8 +97,8 @@ void receiveFromMaster(int bytes) {
       lcd.autoscroll();
       lcd.display();
     } else if(temp == 3){// get temperature and humidity
-      float curTemp = Wire.read();
-      float curHumid = Wire.read();
+      int curTemp = Wire.read();
+      int curHumid = Wire.read();
       //printWeather(curTemp, curHumid);
     }
   }
