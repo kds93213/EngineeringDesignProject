@@ -237,12 +237,27 @@ int readButton(){
  * send a message to slave
  */
 void sendRGB(int category, int* rgb){
-  Wire.beginTransmission(2);
+  Wire.beginTransmission(4);
   Wire.write(1); //sending RGB light value
   Wire.write(category);
   for (int i=0; i<3; ++i){
     Wire.write(rgb[i]);   
   }
+  Wire.endTransmission();
+}
+
+
+void sendTemp(float curtemp){
+  Wire.beginTransmission(4);
+  Wire.write(3); //sending RGB light value
+  Wire.write(curtemp);
+  Wire.write(curhumid);   
+  Wire.endTransmission();
+}
+void sendHumid(float curhumid){
+  Wire.beginTransmission(4);
+  Wire.write(3); //sending humidity
+  Wire.write(curhumid);   
   Wire.endTransmission();
 }
 
