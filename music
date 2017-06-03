@@ -118,7 +118,7 @@ int noteDurations[] = { 6,10,4,4,4,8,8,8,8,4,4,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
   delay(5000);
 }
 
-  if (int weatherget == 3){
+  if (int weatherget == 2){
   int song[] = { NOTE_G4, NOTE_E5, NOTE_D5, NOTE_C5, NOTE_G4, 0, // 솔미레도솔(쉼표)
     NOTE_G4, NOTE_E5, NOTE_D5, NOTE_C5, NOTE_A4, 0, // 솔미레도라(쉼표)
     NOTE_A4, NOTE_F5, NOTE_E5, NOTE_D5, NOTE_B4, 0, // 라파미레시(쉼표)
