@@ -103,6 +103,47 @@ void receiveFromMaster(int bytes) {
     }
   }
 
+
+  void weatherprint(int curtemp, int curhumid){
+if (curtemp > -40){
+		lcd.clear();
+		lcd.print(curtemp);
+		lcd.print("C ");
+		lcd.print(curhumid);
+		lcd.print("%");
+	}
+	if ((curtemp >= -40) && (curtemp < 10))
+	{
+    lcd.setCursor(0,1);
+		lcd.print(" WINTER ");
+		if (curhumid >= 75)
+		{
+		lcd.print("!SNOW!");
+		}
+	}
+
+	else if ((curtemp >= 10 && curtemp < 21))
+	{
+    lcd.setCursor(0,1);
+		lcd.print(" SPRING");
+		if (curhumid >= 75)
+		{
+			lcd.print(" !RAIN!");
+		}
+	}
+
+	else if ((curtemp >= 21))
+	{
+    lcd.setCursor(0,1);
+		lcd.print(" SUMMER");
+		if (curhumid >= 75)
+		{
+			lcd.print(" !RAIN!");
+		}
+	}
+
+  
+    
 void sendBtnInfo() {
   Wire.write("HI, I am  Slave. ");
   // send button information
