@@ -1,6 +1,29 @@
 #include "pitches.h"
 
-void sunnysong(){
+
+int weatherget(float curtemp, float curhumid){
+	if ((curtemp >= -40) && (curtemp < 10))
+	{
+    return 0;//sunny
+		if (curhumid >= 75)
+		{
+    return 2;//snow
+		}
+	}
+
+	else if (curtemp >= 10)
+	{
+    return 0;//sunny
+		if (curhumid >= 75)
+		{
+    return 1;//rainy
+		}
+	}
+}
+
+void musicplay(int weatherget)
+{
+  if (int weatherget == 0){
 int melody[] = { NOTE_C4, NOTE_E4, NOTE_G4, NOTE_G4, NOTE_G4,
 				         NOTE_E4, NOTE_F4, NOTE_G4, NOTE_E4, NOTE_C4, NOTE_C4,
 			           NOTE_C5, NOTE_B4, NOTE_C5, NOTE_A4, NOTE_G4, NOTE_A4, NOTE_E4, NOTE_G4,
@@ -20,46 +43,107 @@ int noteDurations[] = { 6,10,4,4,4,8,8,8,8,4,4,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
   noTone(9);
   }
 }
-
-void snowSong(){
-int speakerPin = 8;
-int length = 26;
-char notes[] = "eeeeeeegcde fffffeeeeddedg";
-int beats[] = { 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2};
- 
-int tempo = 300;
-void playTone(int tone, int duration) {
-  for (long i = 0; i < duration * 1000L; i += tone * 2) {
-    digitalWrite(speakerPin, HIGH);
-    delayMicroseconds(tone);
-    digitalWrite(speakerPin, LOW);
-    delayMicroseconds(tone);
-  }
-}
-void playNote(char note, int duration) {
-  char names[] = { 'c', 'd', 'e', 'f', 'g', 'a', 'b', 'C' };
-  int tones[] = { 1915, 1700, 1519, 1432, 1275, 1136, 1014, 956 };
+  if (int weatherget == 1){
+  delay(600);
+  tone(10, 329.63, 300);
+  delay(350);
+  tone(10, 311.13, 300);
+  delay(350);
+  tone( 10, 329.63, 300);
+  delay(350);
+  tone( 10,311.13, 300);
+  delay(350);
+  tone(10, 329.63, 300);
+  delay(350);
+  tone( 10, 246.94, 300);
+  delay(400);
+  tone(10, 293.66,300);
+  delay(400);
+  tone(10, 261.63,300);
+  delay(400);
+  tone(10, 220, 900);
+  delay(1000);
+  tone(10,146.83, 300);
+  delay(350);
+  tone(10, 174.61, 300);
+  delay(400);
+  tone(10, 220, 300);
+  delay(400);
+  tone(10, 246.94, 900);
+  delay(1000);
+  tone(10, 174.61, 300);
+  delay(400);
+  tone(10, 233.08, 300);
+  delay(400);
+  tone(10, 246.94, 300);
+  delay(400);
+  tone(10, 261.63, 900);
+  delay(1000);
+  delay(300);
+  tone(10, 329.63, 300);
+  delay(400);
+  tone(10, 311.13, 300);
+  delay(400);
+  tone(10, 329.63, 300);
+  delay(400);
+  tone(10, 311.13, 300);
+  delay(400);
+  tone(10, 329.63, 300);
+  delay(400);
+  tone(10, 246.94, 300);
+  delay(400);
+  tone(10, 293.66, 300);
+  delay(400);
+  tone(10, 261.63, 300);
+  delay(400);
+  tone(10, 220, 900);
+  delay(1000);
+  tone(10, 146.83, 300);
+  delay(400);
+  tone(10, 174.61, 300);
+  delay(400);
+  tone(10, 220, 300);
+  delay(400);
+  tone(10, 246.94, 900);
+  delay(1000);
+  tone(10, 174.61, 300);
+  delay(400);
+  tone(10, 261.63, 300);
+  delay(400);
+  tone(10, 246.94, 300);
+  delay(400);
+  tone(10, 220, 900);
+  delay(1000);
   
-  // play the tone corresponding to the note name
-  for (int i = 0; i < 8; i++) {
-    if (names[i] == note) {
-      playTone(tones[i], duration);
+  delay(5000);
+}
+
+  if (int weatherget == 3){
+  int song[] = { NOTE_G4, NOTE_E5, NOTE_D5, NOTE_C5, NOTE_G4, 0, // 솔미레도솔(쉼표)
+    NOTE_G4, NOTE_E5, NOTE_D5, NOTE_C5, NOTE_A4, 0, // 솔미레도라(쉼표)
+    NOTE_A4, NOTE_F5, NOTE_E5, NOTE_D5, NOTE_B4, 0, // 라파미레시(쉼표)
+    NOTE_G5, NOTE_G5, NOTE_F5, NOTE_D5, NOTE_E5, NOTE_C5, 0 }; // 솔솔파레미도(쉼표)
+// 징글벨 첫 소절 연주시간
+  int time[ ] = { 250, 250, 250, 250, 750, 250, // 8분음표 = 250ms
+                  250, 250, 250, 250, 750, 250,
+                  250, 250, 250, 250, 750, 250,
+                  250, 250, 250, 250, 500, 250, 250 };
+
+  int i;
+  pinMode(PIEZO, OUTPUT); // PIEZO 버저핀은 출력
+  delay(3000); // 카드를 열고 3초후에 연주 시작
+  
+  for (i=0; i<25; i++) // 연주 길이만큼 숫자 조정
+  {
+  tone(PIEZO, song[i], time[i]); // 배열순으로 노래 재생
+  delay(time[i]);
     }
   }
 }
-void setup() {
-  pinMode(speakerPin, OUTPUT);
-}
-void loop() {
-  for (int i = 0; i < length; i++) {
-    if (notes[i] == ' ') {
-      delay(beats[i] * tempo); // rest
-    } else {
-      playNote(notes[i], beats[i] * tempo);
-    }
-    
-    // pause between notes
-    delay(tempo / 2); 
-  }
-}
-}
+
+
+
+
+
+
+
